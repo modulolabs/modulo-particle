@@ -1,6 +1,6 @@
 // Include the Modulo library and the Wire library, which it depends on.
-#include "Modulo.h"
-#include "Wire.h"
+#include "Modulo/Modulo.h"
+
 
 // Declare a function that will be called when the knob is turned or pressed
 void onKnobChanged(KnobModulo &k);

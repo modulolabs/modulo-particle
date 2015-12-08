@@ -1,6 +1,6 @@
-#include "Modulo.h"
+#include "Modulo/Modulo.h"
 #if ARDUINO
-#include "Wire.h"
+
 #endif
 #if SPARK
 #include "math.h"

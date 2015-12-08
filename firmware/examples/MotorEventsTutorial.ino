@@ -1,6 +1,6 @@
 // Include the Modulo library and the Wire library, which it depends on.
-#include "Modulo.h"
-#include "Wire.h"
+#include "Modulo/Modulo.h"
+
 
 // Create an object that represents each modulo
 MotorDriverModulo motorDriver;

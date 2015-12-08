@@ -1,5 +1,5 @@
-#include "Modulo.h"
-#include "Wire.h"
+#include "Modulo/Modulo.h"
+
 
 // Create an object that represents the display
 DisplayModulo display;
