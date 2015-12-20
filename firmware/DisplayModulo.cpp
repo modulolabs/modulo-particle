@@ -231,44 +231,36 @@ void DisplayModulo::drawLine(int x0, int y0, int x1, int y1)
     _sendOp(sendData, 5);
 }
 
+
+// Clip a single dimension of a rect to have a position and width that are in
+// the range of a signed byte.
+static void _clipRange(int *x, int *w, int maxWidth) {
+    // Clip the left side to -127.
+    // To support rounded rects we don't clip to 0
+    const int left = -128;
+    if (*x < left) {
+        *w += (*x-left);
+        *x = left;
+    }
+
+    // Return (0, 0) if the rect is offscreen 
+    if (*w < 0 or *x >= maxWidth) {
+        *w = 0;
+        *x = 0;
+    }
+
+    // Clip the width to 255
+    if (*w > 255) {
+        *w = 255;
+    }
+
+}
 void DisplayModulo::drawRect(int x, int y, int w, int h, int radius)
 {
     _endOp();
 
-
-    // Entirely off screen to the right or bottom.
-    if (x >= WIDTH or y >= HEIGHT) {
-        return;
-    }
-
-    const int left = -64;
-    const int top = -64;
-
-    // Clip the left side to -127
-    // To support rounded rects, we don't clip to 0
-    if (x < left) {
-        w += x-left;
-        x = left;
-    }
-
-    // Clip the bottom side to -127
-    // To support rounded rects, we don't clip to 0
-    if (y < top) {
-        h += y+top;
-        y = top;
-    }
-
-    // Entirely off screen to the left or top
-    if (w <= 0 or h <= 0) {
-        return;
-    }
-
-    if (w > 255) {
-        w = 255;
-    }
-    if (h > 255) {
-        h = 255;
-    }
+    _clipRange(&x, &w, WIDTH);
+    _clipRange(&x, &h, HEIGHT);
 
     _waitOnRefresh();
 

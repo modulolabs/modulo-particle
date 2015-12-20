@@ -7,7 +7,8 @@ EXAMPLES = \
 	firmware/examples/KnobTutorial.ino \
 	firmware/examples/KnobEventsTutorial.ino \
 	firmware/examples/MotorTutorial.ino \
-	firmware/examples/MotorEventsTutorial.ino
+	firmware/examples/MotorEventsTutorial.ino \
+	firmware/examples/IRTutorial.ino
 
 
 update :
